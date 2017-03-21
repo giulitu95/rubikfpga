@@ -1,0 +1,4 @@
+﻿  Cube.cpp
+c:\users\giuliano\documents\uni\2 anno\2_semestre\elettronica\rubik\cube.cpp(358): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Rubik.vcxproj -> C:\Users\Giuliano\Documents\UNI\2 ANNO\2_Semestre\ELETTRONICA\Rubik\Debug\Rubik.exe
+  Rubik.vcxproj -> C:\Users\Giuliano\Documents\UNI\2 ANNO\2_Semestre\ELETTRONICA\Rubik\Debug\Rubik.pdb (Partial PDB)
