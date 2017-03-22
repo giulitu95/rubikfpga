@@ -47,15 +47,21 @@ public:
 	void mashupCube(int moves);
 
 	/* Print utils */
-	void printCube();
-	
-	//Print a color on console
-	void colorDecoder(int color);
 
+	//Print all the cube
+	void printCube();
+	//Convert from int to color for print on console
+	void colorDecoder(int color);
 	//Search in the cube all the blocks with the specified color
 	void printColorPosition(int color);
 
 	/* Search functions */
-	//void findEdge(int color1, int color2, int*x, int*y, int*f);
+	void findEdge(int color1, int color2, int &x, int &y, int &f);
+	void nearEdge(int actualx, int actualy, int actualf, int &nearx, int &neary, int &nearface);
+	void findAngle(int color1, int color2, int color3, int &x, int &y, int &f);
+	void nearAngle(int actualx, int actualy, int actualface, int &nearx1, int &neary1, int &nearface1, int &nearx2, int &neary2, int &nearface2);
+
+	/* */
+	int** getFace(int face);
 };
 #endif;
