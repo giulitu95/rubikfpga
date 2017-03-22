@@ -100,7 +100,7 @@ void Cube::printCube() {
 		for (int j = 0; j < 3; j++) {
 			cout << down[i][j] << " ";
 		}
-		cout << endl;
+		cout << endl << endl;
 	}
 }
 void Cube::frontRotation(bool direction) {
@@ -434,11 +434,89 @@ void Cube::mashupCube(int moves) {
 		}
 	}
 }
+void Cube::colorDecoder(int color) {
+	switch (color) {
+	case WHITE:
+		cout << "white";
+		break;
+	case GREEN:
+		cout << "green";
+		break;
+	case BLUE:
+		cout << "blue";
+		break;
+	case RED:
+		cout << "red";
+		break;
+	case ORANGE:
+		cout << "orange";
+		break;
+	case YELLOW:
+		cout << "yellow";
+		break;
+	}
+}
+void Cube::printColorPosition(int color) {
+	bool found;
+	for (int x = 0; x < 3; x++) {
+		for (int y = 0;y < 3;y++) {
+			found = 0;
+			if (front[x][y] == color) {
+				cout << "found ";
+				colorDecoder(front[x][y]); 
+				cout << " on face front in position x=" << x << " y=" << y << endl;
+				found = 1;
+			}
+			if (back[x][y] == color) {
+				cout << "found ";
+				colorDecoder(back[x][y]);
+				cout << " on face back in position x=" << x << " y=" << y << endl;
+				found = 1;
+			}
+			if (left[x][y] == color) {
+				cout << "found ";
+				colorDecoder(left[x][y]);
+				cout << " on face left in position x=" << x << " y=" << y << endl;
+				found = 1;
+			}
+			if (right[x][y] == color) {
+				cout << "found ";
+				colorDecoder(right[x][y]);
+				cout << " on face right in position x=" << x << " y=" << y << endl;
+				found = 1;
+			}
+			if (down[x][y] == color) {
+				cout << "found ";
+				colorDecoder(down[x][y]);
+				cout << " on face down in position x=" << x << " y=" << y << endl;
+				found = 1;
+			}
+			if (up[x][y] == color) {
+				cout << "found ";
+				colorDecoder(up[x][y]);
+				cout << " on face up in position x=" << x << " y=" << y << endl;
+				found = 1;
+			}
+			if (found = 1) {
+				if ((x == 0 || x == 2)&(y == 0 || y == 2)) {
+					cout << "Position Angle" << endl << endl;
+				}
+				if (x == 1 && y == 1) {
+					cout << "Position Center" << endl << endl;
+				}
+				if ((x == 1) ^ (y == 1)) {
+					cout << "Position Corner" << endl << endl;
+				}
+			}
+		}
+	}
+}
+
 
 int main() {
 	Cube* c = new Cube();
 	c->loadCube();
-	c->mashupCube(1000);
+	c->mashupCube(10);
 	cout << endl << endl;
 	c->printCube();
 	/*
@@ -450,5 +528,6 @@ int main() {
 	c->downRotation(0);
 	c->printCube();
 	*/
+	c->printColorPosition(0);
 	system("PAUSE");
 }

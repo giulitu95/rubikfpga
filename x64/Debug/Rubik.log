@@ -1,0 +1,4 @@
+﻿  Cube.cpp
+c:\users\migui\git\cube.cpp(358): warning C4244: 'argomento': conversione da 'time_t' a 'unsigned int'. Possibile perdita di dati.
+  Rubik.vcxproj -> C:\Users\Migui\git\x64\Debug\Rubik.exe
+  Rubik.vcxproj -> C:\Users\Migui\git\x64\Debug\Rubik.pdb (Partial PDB)
