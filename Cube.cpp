@@ -3,7 +3,6 @@
 #include <time.h>
 #include <fstream>
 
-#define DEBUG
 using namespace std;
 
 Cube::Cube() {
@@ -433,6 +432,10 @@ void Cube::mashupCube(int moves) {
 			break;
 		}
 	}
+
+#ifdef DEBUG
+	cout << endl << endl;
+#endif
 }
 void Cube::colorDecoder(int color) {
 	switch (color) {
@@ -497,22 +500,54 @@ void Cube::printColorPosition(int color) {
 				cout << " on face up in position x=" << x << " y=" << y << endl;
 				found = 1;
 			}
-			if (found = 1) {
-				if ((x == 0 || x == 2)&(y == 0 || y == 2)) {
-					cout << "Position Angle" << endl << endl;
-				}
-				if (x == 1 && y == 1) {
-					cout << "Position Center" << endl << endl;
-				}
-				if ((x == 1) ^ (y == 1)) {
-					cout << "Position Corner" << endl << endl;
+		}
+	}
+}
+void Cube::faceDecoder(int face) {
+	switch (face)
+	{
+	case UP:
+		cout << "Up";
+		break;
+	case DOWN:
+		cout << "Down";
+		break;
+	case LEFT:
+		cout << "Left";
+		break;
+	case RIGHT:
+		cout << "Right";
+		break;
+	case FRONT:
+		cout << "Front";
+		break;
+	case BACK:
+		cout << "Back";
+		break;
+	}
+}
+void Cube::findEdge(int color1, int color2, int &x, int &y, int &f){
+	int **pt_f, **pt_nf;
+	int nx, ny, nf;
+	for (int fc = 0; fc < 6; fc++) {
+		pt_f = getFace(fc);
+		for (int xi = 0; xi < 3; xi++) {
+			for (int yi = 0; yi < 3; yi++) {
+				if ((xi == 1 && yi == 0) || (xi == 0 && yi == 1) || (xi == 2 && yi == 1) || (xi == 1 && yi == 2)){
+					if (color1 == pt_f[yi][xi]) {
+						nearEdge(xi, yi, fc, nx, ny, nf);
+						pt_nf = getFace(nf);
+						if (color2 == pt_nf[ny][nx]) {
+							x = xi;
+							y = yi;
+							f = fc;
+							break;
+						}
+					}
 				}
 			}
 		}
 	}
-}
-void Cube::findEdge(int color1, int color2, int &x, int &y, int &f) {
-		
 }
 void Cube::nearEdge(int actualx, int actualy, int actualf, int &nearx, int &neary, int &nearface) {
 	switch (actualf) {
@@ -529,8 +564,8 @@ void Cube::nearEdge(int actualx, int actualy, int actualf, int &nearx, int &near
 		}
 		else if ((actualx == 2) & (actualy == 1)) {
 			nearface = RIGHT;
-			nearx = 0;
-			neary = 1;
+			nearx = 1;
+			neary = 0;
 		}
 		else if ((actualx == 1) & (actualy == 2)) {
 			nearface = FRONT;
@@ -650,11 +685,34 @@ void Cube::nearEdge(int actualx, int actualy, int actualf, int &nearx, int &near
 		break;
 	}
 }
-
+void Cube::findAngle(int color1, int color2, int color3, int &x, int &y, int &f) {
+	int** currentFace;
+	int** face1;
+	int** face2;
+	int f1, f2;
+	int nearx1, nearx2, neary1, neary2;
+	for (int i = 0; i < 6; i++) {
+		currentFace = getFace(i);
+		for (int j = 0; j < 3; j = j + 2) {
+			for (int k = 0; k < 3; k = k + 2) {
+				if (currentFace[j][k] == color1) {
+					nearAngle(k, j, i, nearx1, neary1, f1, nearx2, neary2, f2);
+					face1 = getFace(f1);
+					face2 = getFace(f2);
+					if ((face1[neary1][nearx1] == color2 && face2[neary2][nearx2] == color3) || (face1[neary1][nearx1] == color3 && face2[neary2][nearx2] == color2)) {
+						x = k;
+						y = j;
+						f = i;
+					}
+				}
+			}
+		}
+	}
+}
 void Cube::nearAngle(int actualx, int actualy, int actualface, int &nearx1, int &neary1, int &nearface1, int &nearx2, int &neary2, int &nearface2) {
 	switch (actualface) {
 	case FRONT:
-		if (actualx == 0 & actualy == 0) {
+		if (actualx == 0 && actualy == 0) {
 			nearface1 = UP;
 			nearx1 = 0;
 			neary1 = 2;
@@ -662,7 +720,7 @@ void Cube::nearAngle(int actualx, int actualy, int actualface, int &nearx1, int 
 			nearx2 = 2;
 			neary2 = 0;
 		}
-		else if (actualx == 2 & actualy == 0) {
+		else if (actualx == 2 && actualy == 0) {
 			nearface1 = UP;
 			nearx1 = 2;
 			neary1 = 2;
@@ -670,7 +728,7 @@ void Cube::nearAngle(int actualx, int actualy, int actualface, int &nearx1, int 
 			nearx2 = 0;
 			neary2 = 0;
 		}
-		else if (actualx == 0 & actualy == 2) {
+		else if (actualx == 0 && actualy == 2) {
 			nearface1 = DOWN;
 			nearx1 = 0;
 			neary1 = 0;
@@ -678,7 +736,7 @@ void Cube::nearAngle(int actualx, int actualy, int actualface, int &nearx1, int 
 			nearx2 = 2;
 			neary2 = 2;
 		}
-		else if (actualx == 2 & actualy == 2) {
+		else if (actualx == 2 && actualy == 2) {
 			nearface1 = DOWN;
 			nearx1 = 2;
 			neary1 = 0;
@@ -686,8 +744,9 @@ void Cube::nearAngle(int actualx, int actualy, int actualface, int &nearx1, int 
 			nearx2 = 0;
 			neary2 = 2;
 		}
+		break;
 	case LEFT:
-		if (actualx == 0 & actualy == 0) {
+		if (actualx == 0 && actualy == 0) {
 			nearface1 = UP;
 			nearx1 = 0;
 			neary1 = 0;
@@ -695,7 +754,7 @@ void Cube::nearAngle(int actualx, int actualy, int actualface, int &nearx1, int 
 			nearx2 = 2;
 			neary2 = 0;
 		}
-		else if (actualx == 2 & actualy == 0) {
+		else if (actualx == 2 && actualy == 0) {
 			nearface1 = UP;
 			nearx1 = 0;
 			neary1 = 2;
@@ -703,7 +762,7 @@ void Cube::nearAngle(int actualx, int actualy, int actualface, int &nearx1, int 
 			nearx2 = 0;
 			neary2 = 0;
 		}
-		else if (actualx == 0 & actualy == 2) {
+		else if (actualx == 0 && actualy == 2) {
 			nearface1 = DOWN;
 			nearx1 = 0;
 			neary1 = 2;
@@ -711,7 +770,7 @@ void Cube::nearAngle(int actualx, int actualy, int actualface, int &nearx1, int 
 			nearx2 = 2;
 			neary2 = 2;
 		}
-		else if (actualx == 2 & actualy == 2) {
+		else if (actualx == 2 && actualy == 2) {
 			nearface1 = FRONT;
 			nearx1 = 0;
 			neary1 = 2;
@@ -719,6 +778,7 @@ void Cube::nearAngle(int actualx, int actualy, int actualface, int &nearx1, int 
 			nearx2 = 0;
 			neary2 = 0;
 		}
+		break;
 	case RIGHT:
 		if (actualx == 0 & actualy == 0) {
 			nearface1 = UP;
@@ -728,7 +788,7 @@ void Cube::nearAngle(int actualx, int actualy, int actualface, int &nearx1, int 
 			nearx2 = 2;
 			neary2 = 0;
 		}
-		else if (actualx == 2 & actualy == 0) {
+		else if (actualx == 2 && actualy == 0) {
 			nearface1 = UP;
 			nearx1 = 2;
 			neary1 = 0;
@@ -736,7 +796,7 @@ void Cube::nearAngle(int actualx, int actualy, int actualface, int &nearx1, int 
 			nearx2 = 0;
 			neary2 = 0;
 		}
-		else if (actualx == 0 & actualy == 2) {
+		else if (actualx == 0 && actualy == 2) {
 			nearface1 = DOWN;
 			nearx1 = 2;
 			neary1 = 0;
@@ -752,8 +812,9 @@ void Cube::nearAngle(int actualx, int actualy, int actualface, int &nearx1, int 
 			nearx2 = 2;
 			neary2 = 2;
 		}
+		break;
 	case BACK:
-		if (actualx == 0 & actualy == 0) {
+		if (actualx == 0 && actualy == 0) {
 			nearface1 = UP;
 			nearx1 = 2;
 			neary1 = 0;
@@ -761,7 +822,7 @@ void Cube::nearAngle(int actualx, int actualy, int actualface, int &nearx1, int 
 			nearx2 = 2;
 			neary2 = 0;
 		}
-		else if (actualx == 2 & actualy == 0) {
+		else if (actualx == 2 && actualy == 0) {
 			nearface1 = UP;
 			nearx1 = 0;
 			neary1 = 0;
@@ -769,7 +830,7 @@ void Cube::nearAngle(int actualx, int actualy, int actualface, int &nearx1, int 
 			nearx2 = 0;
 			neary2 = 0;
 		}
-		else if (actualx == 0 & actualy == 2) {
+		else if (actualx == 0 && actualy == 2) {
 			nearface1 = DOWN;
 			nearx1 = 2;
 			neary1 = 2;
@@ -777,7 +838,7 @@ void Cube::nearAngle(int actualx, int actualy, int actualface, int &nearx1, int 
 			nearx2 = 2;
 			neary2 = 2;
 		}
-		else if (actualx == 2 & actualy == 2) {
+		else if (actualx == 2 && actualy == 2) {
 			nearface1 = LEFT;
 			nearx1 = 0;
 			neary1 = 2;
@@ -785,8 +846,9 @@ void Cube::nearAngle(int actualx, int actualy, int actualface, int &nearx1, int 
 			nearx2 = 0;
 			neary2 = 2;
 		}
+		break;
 	case UP:
-		if (actualx == 0 & actualy == 0) {
+		if (actualx == 0 && actualy == 0) {
 			nearface1 = BACK;
 			nearx1 = 2;
 			neary1 = 0;
@@ -794,7 +856,7 @@ void Cube::nearAngle(int actualx, int actualy, int actualface, int &nearx1, int 
 			nearx2 = 0;
 			neary2 = 0;
 		}
-		else if (actualx == 2 & actualy == 0) {
+		else if (actualx == 2 && actualy == 0) {
 			nearface1 = BACK;
 			nearx1 = 0;
 			neary1 = 0;
@@ -802,7 +864,7 @@ void Cube::nearAngle(int actualx, int actualy, int actualface, int &nearx1, int 
 			nearx2 = 2;
 			neary2 = 0;
 		}
-		else if (actualx == 0 & actualy == 2) {
+		else if (actualx == 0 && actualy == 2) {
 			nearface1 = FRONT;
 			nearx1 = 0;
 			neary1 = 0;
@@ -810,7 +872,7 @@ void Cube::nearAngle(int actualx, int actualy, int actualface, int &nearx1, int 
 			nearx2 = 2;
 			neary2 = 0;
 		}
-		else if (actualx == 2 & actualy == 2) {
+		else if (actualx == 2 && actualy == 2) {
 			nearface1 = FRONT;
 			nearx1 = 2;
 			neary1 = 0;
@@ -818,8 +880,9 @@ void Cube::nearAngle(int actualx, int actualy, int actualface, int &nearx1, int 
 			nearx2 = 0;
 			neary2 = 0;
 		}
+		break;
 	case DOWN:
-		if (actualx == 0 & actualy == 0) {
+		if (actualx == 0 && actualy == 0) {
 			nearface1 = FRONT;
 			nearx1 = 0;
 			neary1 = 2;
@@ -827,7 +890,7 @@ void Cube::nearAngle(int actualx, int actualy, int actualface, int &nearx1, int 
 			nearx2 = 2;
 			neary2 = 2;
 		}
-		else if (actualx == 2 & actualy == 0) {
+		else if (actualx == 2 && actualy == 0) {
 			nearface1 = FRONT;
 			nearx1 = 2;
 			neary1 = 2;
@@ -835,7 +898,7 @@ void Cube::nearAngle(int actualx, int actualy, int actualface, int &nearx1, int 
 			nearx2 = 0;
 			neary2 = 2;
 		}
-		else if (actualx == 0 & actualy == 2) {
+		else if (actualx == 0 && actualy == 2) {
 			nearface1 = BACK;
 			nearx1 = 2;
 			neary1 = 2;
@@ -843,7 +906,7 @@ void Cube::nearAngle(int actualx, int actualy, int actualface, int &nearx1, int 
 			nearx2 = 0;
 			neary2 = 2;
 		}
-		else if (actualx == 2 & actualy == 2) {
+		else if (actualx == 2 && actualy == 2) {
 			nearface1 = BACK;
 			nearx1 = 0;
 			neary1 = 2;
@@ -851,6 +914,7 @@ void Cube::nearAngle(int actualx, int actualy, int actualface, int &nearx1, int 
 			nearx2 = 2;
 			neary2 = 2;
 		}
+		break;
 	}
 
 }
@@ -882,18 +946,8 @@ int** Cube::getFace(int face) {
 int main() {
 	Cube* c = new Cube();
 	c->loadCube();
-	c->mashupCube(10);
-	cout << endl << endl;
+	c->mashupCube(20);
 	c->printCube();
-	/*
-	c->printCube();
-	cout << endl << "-----------------------U'-----------------------------" << endl;
-	c->upRotation(1);
-	c->printCube();
-	cout << endl << "-----------------------D-----------------------------" << endl;
-	c->downRotation(0);
-	c->printCube();
-	*/
-	c->printColorPosition(0);
+	c->printColorPosition(WHITE);
 	system("PAUSE");
 }

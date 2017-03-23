@@ -1,4 +1,7 @@
 ﻿  Cube.cpp
-c:\users\migui\git\cube.cpp(358): warning C4244: 'argomento': conversione da 'time_t' a 'unsigned int'. Possibile perdita di dati.
+c:\users\migui\git\cube.cpp(357): warning C4244: 'argomento': conversione da 'time_t' a 'unsigned int'. Possibile perdita di dati.
+c:\users\migui\git\cube.cpp(783): warning C4554: '&': controllare eventuali errori di precedenza tra gli operatori. Per maggiore chiarezza, utilizzare le parentesi.
+c:\users\migui\git\cube.cpp(807): warning C4554: '&': controllare eventuali errori di precedenza tra gli operatori. Per maggiore chiarezza, utilizzare le parentesi.
+c:\users\migui\git\cube.cpp(943): warning C4715: 'Cube::getFace': non tutti i percorsi di controllo restituiscono un valore
   Rubik.vcxproj -> C:\Users\Migui\git\x64\Debug\Rubik.exe
   Rubik.vcxproj -> C:\Users\Migui\git\x64\Debug\Rubik.pdb (Partial PDB)
