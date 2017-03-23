@@ -23,5 +23,8 @@
     <ClInclude Include="Cube.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="Steps.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
