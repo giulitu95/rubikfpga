@@ -1,8 +1,10 @@
 #ifndef STEPS_H
+#define STEPS_H
 #include"Cube.h"
 #include<list>
 
 using namespace std;
+
 class Steps {
 private:
 	Cube cube;

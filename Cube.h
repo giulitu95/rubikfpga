@@ -15,9 +15,40 @@
 #define FRONT	4
 #define BACK	5
 
-/*
-CLOCKWISE			--> 0
-COUNTERCLOCKWISE	--> 1
+#define CLOCKWISE			0
+#define COUNTERCLOCKWISE	1
+
+/* Cube navigation specs
+
+Cube Coordinates on printed faces (x,y):	
+	[0,0][1,0][2,0]
+	[0,1][1,1][2,1]
+	[0,2][1,2][2,2]
+
+Matrix Coordinates:
+	facename[y][x]
+
+Position of origin [0][0] and name of faces face in cube proyection
+U = UP, F = FRONT, R = RIGHT, L= LEFT, B = BACK, D = DOWN
+			    _________
+			    | o - - |
+		        | - U - | 
+			    | - - - |
+ --------------------------------
+| o - - | o - - | o - - | o - - | 
+| - B - | - L - | - F - | - R - | 
+| - - - | - - - | - - - | - - - |
+ --------------------------------
+			    | o - - |
+			    | - D - |
+			    | - - - |
+			    ---------
+
+To navigate the cube's faces and keep the coordinate system:
+- Put on the front face with the origin in the top left angle.
+- Access to the face using the shortest way. 
+- The only way to access to the back face is using two times left or right rotations. 
+  NEVER access to the back face rotating UP or DOWN.
 */
 
 class Cube {
@@ -33,6 +64,7 @@ private:
 	int** left;
 	int** right;
 
+	//Rotation
 	void sideRotation(int** matrix, bool direction);
 
 public:
@@ -48,6 +80,7 @@ public:
 	void downRotation(bool direction);
 	void upRotation(bool direction);
 	void backRotation(bool direction);
+	//Mix the cube with moves random moves
 	void mashupCube(int moves);
 
 	/* Print utils */

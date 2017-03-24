@@ -1,7 +1,9 @@
-#include"Cube.h"
 #include <iostream>
 #include <time.h>
 #include <fstream>
+#include "Cube.h"
+
+#define DEBUG 
 
 using namespace std;
 
@@ -101,6 +103,7 @@ void Cube::printCube() {
 		}
 		cout << endl;
 	}
+	cout << endl;
 }
 void Cube::frontRotation(bool direction) {
 	int colourTmp[3];
@@ -940,14 +943,4 @@ int** Cube::getFace(int face) {
 		break;
 	}
 
-}
-
-
-int main() {
-	Cube* c = new Cube();
-	c->loadCube();
-	c->mashupCube(20);
-	c->printCube();
-	c->printColorPosition(WHITE);
-	system("PAUSE");
 }
