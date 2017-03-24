@@ -10,3 +10,5 @@ and how to design it on an FPGA using VHDL.
 We have only some ideas about it. It will be based on a Xilinx or Altera FPGA.
 It use six stepper motors (one for face) controlled by an Allegro A4988 stepper motor controller.
 Circuits will coming soon.
+
+Greetings from the Team! <br /> giulitu95 and mstanc92
