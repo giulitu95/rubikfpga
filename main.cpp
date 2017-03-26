@@ -8,9 +8,30 @@ using namespace std;
 
 int main() {
 	Cube* c = new Cube();
+	Steps* s = new Steps(c);
 	c->loadCube();
 	c->mashupCube(20);
+	//c->downRotation(0);
+	/*
+	c->rightRotation(0);
+	c->rightRotation(0);
+	c->downRotation(1);
+	c->rightRotation(0);
+	c->rightRotation(0);*/
 	c->printCube();
-	c->printColorPosition(WHITE);
+	int whitex;
+	int whitey;
+	int whiteFace;
+
+	c->findEdge(WHITE, RED, whitex, whitey, whiteFace);
+	cout << whitex << endl;
+	cout << whitey << endl;
+	cout << whiteFace << endl;
+	s->step1();
+	
+	
+	s->printSteps();
+	cout << endl;
+	c->printCube();
 	system("PAUSE");
 }

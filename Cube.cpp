@@ -555,132 +555,132 @@ void Cube::findEdge(int color1, int color2, int &x, int &y, int &f){
 void Cube::nearEdge(int actualx, int actualy, int actualf, int &nearx, int &neary, int &nearface) {
 	switch (actualf) {
 	case UP:
-		if ((actualx == 0) & (actualy == 1)) {
+		if ((actualx == 0) && (actualy == 1)) {
 			nearface = LEFT;
 			nearx = 1;
 			neary = 0;
 		}
-		else if ((actualx == 1) & (actualy == 0)) {
+		else if ((actualx == 1) && (actualy == 0)) {
 			nearface = BACK;
-			nearx = 0;
-			neary = 1;
+			nearx = 1;
+			neary = 0;
 		}
-		else if ((actualx == 2) & (actualy == 1)) {
+		else if ((actualx == 2) && (actualy == 1)) {
 			nearface = RIGHT;
 			nearx = 1;
 			neary = 0;
 		}
-		else if ((actualx == 1) & (actualy == 2)) {
+		else if ((actualx == 1) && (actualy == 2)) {
 			nearface = FRONT;
-			nearx = 0;
-			neary = 1;
+			nearx = 1;
+			neary = 0;
 		}
 		break;
 	case DOWN:
-		if ((actualx == 0) & (actualy == 1)) {
+		if ((actualx == 0) && (actualy == 1)) {
 			nearface = LEFT;
 			nearx = 1;
 			neary = 2;
 		}
-		else if ((actualx == 1) & (actualy == 0)) {
+		else if ((actualx == 1) && (actualy == 0)) {
 			nearface = FRONT;
 			nearx = 1;
 			neary = 2;
 		}
-		else if ((actualx == 2) & (actualy == 1)) {
+		else if ((actualx == 2) && (actualy == 1)) {
 			nearface = RIGHT;
 			nearx = 1;
 			neary = 2;
 		}
-		else if ((actualx == 1) & (actualy == 2)) {
+		else if ((actualx == 1) && (actualy == 2)) {
 			nearface = BACK;
 			nearx = 1;
 			neary = 2;
 		}
 		break;
 	case FRONT:
-		if ((actualx == 0) & (actualy == 1)) {
+		if ((actualx == 0) && (actualy == 1)) {
 			nearface = LEFT;
 			nearx = 2;
 			neary = 1;
 		}
-		else if ((actualx == 1) & (actualy == 0)) {
+		else if ((actualx == 1) && (actualy == 0)) {
 			nearface = UP;
 			nearx = 1;
 			neary = 2;
 		}
-		else if ((actualx == 2) & (actualy == 1)) {
+		else if ((actualx == 2) && (actualy == 1)) {
 			nearface = RIGHT;
 			nearx = 0;
 			neary = 1;
 		}
-		else if ((actualx == 1) & (actualy == 2)) {
+		else if ((actualx == 1) && (actualy == 2)) {
 			nearface = DOWN;
 			nearx = 1;
 			neary = 0;
 		}
 		break;
 	case BACK:
-		if ((actualx == 0) & (actualy == 1)) {
+		if ((actualx == 0) && (actualy == 1)) {
 			nearface = RIGHT;
 			nearx = 2;
 			neary = 1;
 		}
-		else if ((actualx == 1) & (actualy == 0)) {
+		else if ((actualx == 1) && (actualy == 0)) {
 			nearface = UP;
-			nearx = 0;
-			neary = 1;
+			nearx = 1;
+			neary = 0;
 		}
-		else if ((actualx == 2) & (actualy == 1)) {
+		else if ((actualx == 2) && (actualy == 1)) {
 			nearface = LEFT;
 			nearx = 0;
 			neary = 1;
 		}
-		else if ((actualx == 1) & (actualy == 2)) {
+		else if ((actualx == 1) && (actualy == 2)) {
 			nearface = DOWN;
 			nearx = 1;
 			neary = 2;
 		}
 		break;
 	case LEFT:
-		if ((actualx == 0) & (actualy == 1)) {
+		if ((actualx == 0) && (actualy == 1)) {
 			nearface = BACK;
 			nearx = 2;
 			neary = 1;
 		}
-		else if ((actualx == 1) & (actualy == 0)) {
+		else if ((actualx == 1) && (actualy == 0)) {
 			nearface = UP;
 			nearx = 0;
 			neary = 1;
 		}
-		else if ((actualx == 2) & (actualy == 1)) {
+		else if ((actualx == 2) && (actualy == 1)) {
 			nearface = FRONT;
 			nearx = 0;
 			neary = 1;
 		}
-		else if ((actualx == 1) & (actualy == 2)) {
+		else if ((actualx == 1) && (actualy == 2)) {
 			nearface = DOWN;
 			nearx = 0;
 			neary = 1;
 		}
 		break;
 	case RIGHT:
-		if ((actualx == 0) & (actualy == 1)) {
+		if ((actualx == 0) && (actualy == 1)) {
 			nearface = FRONT;
 			nearx = 2;
 			neary = 1;
 		}
-		else if ((actualx == 1) & (actualy == 0)) {
+		else if ((actualx == 1) && (actualy == 0)) {
 			nearface = UP;
 			nearx = 2;
 			neary = 1;
 		}
-		else if ((actualx == 2) & (actualy == 1)) {
+		else if ((actualx == 2) && (actualy == 1)) {
 			nearface = BACK;
 			nearx = 0;
 			neary = 1;
 		}
-		else if ((actualx == 1) & (actualy == 2)) {
+		else if ((actualx == 1) && (actualy == 2)) {
 			nearface = DOWN;
 			nearx = 2;
 			neary = 1;
@@ -783,7 +783,7 @@ void Cube::nearAngle(int actualx, int actualy, int actualface, int &nearx1, int 
 		}
 		break;
 	case RIGHT:
-		if (actualx == 0 & actualy == 0) {
+		if (actualx == 0 && actualy == 0) {
 			nearface1 = UP;
 			nearx1 = 2;
 			neary1 = 2;
@@ -807,7 +807,7 @@ void Cube::nearAngle(int actualx, int actualy, int actualface, int &nearx1, int 
 			nearx2 = 2;
 			neary2 = 2;
 		}
-		else if (actualx == 2 & actualy == 2) {
+		else if (actualx == 2 && actualy == 2) {
 			nearface1 = BACK;
 			nearx1 = 0;
 			neary1 = 2;

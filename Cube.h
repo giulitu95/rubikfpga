@@ -28,6 +28,14 @@ Cube Coordinates on printed faces (x,y):
 Matrix Coordinates:
 	facename[y][x]
 
+Color of pieces [1][1]:
+	U --> YELLOW
+	D --> WHITE
+	F --> RED
+	L --> BLUE
+	R --> GREEN
+	B --> ORANGE
+
 Position of origin [0][0] and name of faces face in cube proyection
 U = UP, F = FRONT, R = RIGHT, L= LEFT, B = BACK, D = DOWN
 			    _________
