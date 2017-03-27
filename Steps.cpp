@@ -626,3 +626,71 @@ void Steps::printSteps() {
 		cout << *it << " ";
 	}
 }
+
+void Steps::verifyStep(int stepNo, int cycles) {
+	cout << "Verify until step " << stepNo << " for " << cycles << " times." << endl << endl;
+	int errorCases=0, okCases=0;
+	bool error=0;
+	int **f, **b, **d, **l, **r;
+	for (int i = 1; i <= cycles; i++) {
+		cout << "Case " << i << " of " << cycles << ": ";
+		cube->mashupCube(60);
+		switch (stepNo) {
+		case 1:
+			step1();
+			d = cube->getFace(DOWN);
+			b = cube->getFace(BACK);
+			f = cube->getFace(FRONT);
+			l = cube->getFace(LEFT);
+			r = cube->getFace(RIGHT);
+
+			//Verify the white cross
+			for (int x = 0;x < 3;x++) {
+				for (int y = 0; y < 3;y++) {
+					if (((x == 1) && ((y == 0) || (y == 2))) || ((y == 1) && ((x == 0) || (x == 2)))) {
+						if (d[y][x] != WHITE) {
+							error = 1;
+						}
+					}
+				}
+			}
+			if (error) {
+				cout << "error" << endl << "White cross pattern on down face not complete" << endl;
+			}
+			//Verify all the near faces of the edges have the same color of the face's centers
+			else {
+				//front->red, right->green, left->blue, back->orange
+				if (f[2][1] != RED) {
+					error = 1;
+					cout << "error" << endl << "Red edge on front face not in position" << endl;
+				}
+				if (r[2][1] != GREEN) {
+					if (error == 0) { cout << "error" << endl; }
+					error = 1;
+					cout << "Green edge on right face not in position" << endl;
+				}
+				if (b[2][1] != ORANGE) {
+					if (error == 0) { cout << "error" << endl; }
+					error = 1;
+					cout << "Orange edge on back face not in position" << endl;
+				}
+				if (l[2][1] != BLUE) {
+					if (error == 0) { cout << "error" << endl; }
+					error = 1;
+					cout << "Blue edge on left face not in position" << endl;
+				}
+			}
+			if (error) {
+				cout << endl;
+				cube->printCube();
+				errorCases++;
+			}
+			else {
+				cout << "ok" << endl << endl;
+				okCases++;
+			}
+			break;
+		}
+	}
+	cout << "Done " << cycles << " verification cycles until " << stepNo << " step: " << okCases << " times gone ok," << errorCases << " times gone with errors.";
+}

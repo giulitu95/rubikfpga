@@ -10,14 +10,14 @@ int main() {
 	Cube* c = new Cube();
 	Steps* s = new Steps(c);
 	c->loadCube();
-	c->mashupCube(20);
 	//c->downRotation(0);
 	/*
 	c->rightRotation(0);
 	c->rightRotation(0);
 	c->downRotation(1);
 	c->rightRotation(0);
-	c->rightRotation(0);*/
+	c->rightRotation(0);
+	
 	c->printCube();
 	int whitex;
 	int whitey;
@@ -34,4 +34,7 @@ int main() {
 	cout << endl;
 	c->printCube();
 	system("PAUSE");
+	*/
+	s->verifyStep(1, 1000000);
+	system ("PAUSE");
 }

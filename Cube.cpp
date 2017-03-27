@@ -3,8 +3,6 @@
 #include <fstream>
 #include "Cube.h"
 
-#define DEBUG 
-
 using namespace std;
 
 Cube::Cube() {

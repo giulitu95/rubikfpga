@@ -29,25 +29,30 @@ private:
 	void back2(int i);
 
 public:
-	// consctructor of this class, the constructor need a instance of a cube
+	//Constructor of this class, the constructor need a instance of a cube
 	Steps(Cube* cube);
-	//return the steps list
+	//Return the steps list
 	list<char*> getSteps(); 
-	//Methods that create the first white cross whith the pieces in the right position
+	//Method that create the first white cross with the pieces in the right position
 	void step1(); 
-	//Methods that complete all the white face whith the piece in the right position
+	//Method that complete all the white face with the piece in the right position
 	void step2();
-	//Methods that complete the second layer of the cube 
+	//Method that complete the second layer of the cube 
 	void step3();
-	//Methods that create the yellow cross, in this steps the pieces don't need to be in the right position
+	//Method that create the yellow cross, in this steps the pieces don't need to be in the right position
 	void step4();
-	//Methods that complete the yellow face, the piece don't need to be in the right position
+	//Method that complete the yellow face, the piece don't need to be in the right position
 	void step5();
-	//Methods that put the angle of the yellow face in the righty position
+	//Method that put the angle of the yellow face in the right position
 	void step6();
-	//Methods that finelize the cube putting the edge of the last face in the correct position
+	//Method that finalize the cube putting the edge of the last face in the correct position
 	void step7();
-	//Methods that print the steps currently done
+	//Method that print the steps currently done
 	void printSteps();
+
+	//Used for debugging.
+	//Get a step number. It mash up the cube and solves until that step for cycles times. 
+	//Return on console some diagnostic informations if the solution isn't correct.
+	void verifyStep(int stepNo, int cycles);
 };
 #endif;
