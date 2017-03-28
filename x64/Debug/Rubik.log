@@ -1,23 +1,3 @@
 ﻿  main.cpp
-  Steps.cpp
-c:\users\migui\documents\visual studio 2015\projects\rubikfpga\rubikfpga\steps.cpp(16): warning C4800: 'int': imposto valore booleano 'true' o 'false' (avviso di prestazioni)
-c:\users\migui\documents\visual studio 2015\projects\rubikfpga\rubikfpga\steps.cpp(24): warning C4800: 'int': imposto valore booleano 'true' o 'false' (avviso di prestazioni)
-c:\users\migui\documents\visual studio 2015\projects\rubikfpga\rubikfpga\steps.cpp(31): warning C4800: 'int': imposto valore booleano 'true' o 'false' (avviso di prestazioni)
-c:\users\migui\documents\visual studio 2015\projects\rubikfpga\rubikfpga\steps.cpp(38): warning C4800: 'int': imposto valore booleano 'true' o 'false' (avviso di prestazioni)
-c:\users\migui\documents\visual studio 2015\projects\rubikfpga\rubikfpga\steps.cpp(45): warning C4800: 'int': imposto valore booleano 'true' o 'false' (avviso di prestazioni)
-c:\users\migui\documents\visual studio 2015\projects\rubikfpga\rubikfpga\steps.cpp(52): warning C4800: 'int': imposto valore booleano 'true' o 'false' (avviso di prestazioni)
-c:\users\migui\documents\visual studio 2015\projects\rubikfpga\rubikfpga\steps.cpp(59): warning C4800: 'int': imposto valore booleano 'true' o 'false' (avviso di prestazioni)
-c:\users\migui\documents\visual studio 2015\projects\rubikfpga\rubikfpga\steps.cpp(60): warning C4800: 'int': imposto valore booleano 'true' o 'false' (avviso di prestazioni)
-c:\users\migui\documents\visual studio 2015\projects\rubikfpga\rubikfpga\steps.cpp(68): warning C4800: 'int': imposto valore booleano 'true' o 'false' (avviso di prestazioni)
-c:\users\migui\documents\visual studio 2015\projects\rubikfpga\rubikfpga\steps.cpp(69): warning C4800: 'int': imposto valore booleano 'true' o 'false' (avviso di prestazioni)
-c:\users\migui\documents\visual studio 2015\projects\rubikfpga\rubikfpga\steps.cpp(76): warning C4800: 'int': imposto valore booleano 'true' o 'false' (avviso di prestazioni)
-c:\users\migui\documents\visual studio 2015\projects\rubikfpga\rubikfpga\steps.cpp(77): warning C4800: 'int': imposto valore booleano 'true' o 'false' (avviso di prestazioni)
-c:\users\migui\documents\visual studio 2015\projects\rubikfpga\rubikfpga\steps.cpp(84): warning C4800: 'int': imposto valore booleano 'true' o 'false' (avviso di prestazioni)
-c:\users\migui\documents\visual studio 2015\projects\rubikfpga\rubikfpga\steps.cpp(85): warning C4800: 'int': imposto valore booleano 'true' o 'false' (avviso di prestazioni)
-c:\users\migui\documents\visual studio 2015\projects\rubikfpga\rubikfpga\steps.cpp(92): warning C4800: 'int': imposto valore booleano 'true' o 'false' (avviso di prestazioni)
-c:\users\migui\documents\visual studio 2015\projects\rubikfpga\rubikfpga\steps.cpp(93): warning C4800: 'int': imposto valore booleano 'true' o 'false' (avviso di prestazioni)
-c:\users\migui\documents\visual studio 2015\projects\rubikfpga\rubikfpga\steps.cpp(100): warning C4800: 'int': imposto valore booleano 'true' o 'false' (avviso di prestazioni)
-c:\users\migui\documents\visual studio 2015\projects\rubikfpga\rubikfpga\steps.cpp(101): warning C4800: 'int': imposto valore booleano 'true' o 'false' (avviso di prestazioni)
-  Generazione del codice in corso...
   Rubik.vcxproj -> C:\Users\Migui\Documents\Visual Studio 2015\Projects\rubikFPGA\rubikfpga\x64\Debug\Rubik.exe
   Rubik.vcxproj -> C:\Users\Migui\Documents\Visual Studio 2015\Projects\rubikFPGA\rubikfpga\x64\Debug\Rubik.pdb (Partial PDB)

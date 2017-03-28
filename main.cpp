@@ -35,6 +35,6 @@ int main() {
 	c->printCube();
 	system("PAUSE");
 	*/
-	s->verifyStep(1, 1000000);
+	s->verifyStep(1, 100, 1);
 	system ("PAUSE");
 }

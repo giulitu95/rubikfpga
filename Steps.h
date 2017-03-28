@@ -32,7 +32,7 @@ public:
 	//Constructor of this class, the constructor need a instance of a cube
 	Steps(Cube* cube);
 	//Return the steps list
-	list<char*> getSteps(); 
+	list<char*> getSteps();
 	//Method that create the first white cross with the pieces in the right position
 	void step1(); 
 	//Method that complete all the white face with the piece in the right position
@@ -52,7 +52,7 @@ public:
 
 	//Used for debugging.
 	//Get a step number. It mash up the cube and solves until that step for cycles times. 
-	//Return on console some diagnostic informations if the solution isn't correct.
-	void verifyStep(int stepNo, int cycles);
+	//if verbose it's true, return on console some diagnostic informations if the solution isn't correct.
+	void verifyStep(int stepNo, int cycles, bool verbose);
 };
 #endif;
