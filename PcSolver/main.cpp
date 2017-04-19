@@ -11,30 +11,19 @@ int main() {
 	Steps* s = new Steps(c);
 	c->loadCube();
 	//c->downRotation(0);
-	/*
-	c->rightRotation(0);
-	c->rightRotation(0);
-	c->downRotation(1);
-	c->rightRotation(0);
-	c->rightRotation(0);
 	
-	c->printCube();
-	int whitex;
-	int whitey;
-	int whiteFace;
-
-	c->findEdge(WHITE, RED, whitex, whitey, whiteFace);
-	cout << whitex << endl;
-	cout << whitey << endl;
-	cout << whiteFace << endl;
+	c->mashupCube(100);
+	
 	s->step1();
+	c->printCube();
 	
 	
 	s->printSteps();
+	s->step2();
 	cout << endl;
 	c->printCube();
 	system("PAUSE");
-	*/
-	s->verifyStep(1, 100, 1);
-	system ("PAUSE");
+	
+	/*s->verifyStep(1, 100, 1);
+	system ("PAUSE");*/
 }

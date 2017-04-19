@@ -615,7 +615,309 @@ void Steps::step1() {
 		}
 	}
 }
-void Steps::step2() {}
+void Steps::step2() {
+	bool count = true;
+	int whitex;
+	int whitey;
+	int whiteFace;
+	cube->findAngle(WHITE, RED, GREEN, whitex, whitey, whiteFace);
+	while (count) {
+		switch (whiteFace) {
+		case FRONT:
+			if (whitex == 0 && whitey == 0) {
+				up(1);
+				whiteFace = RIGHT;
+			}
+			else if (whitex == 2 && whitey == 0) {
+				front(1);
+				up(1);
+				front(0);
+				count = false;
+			}
+			else if (whitex == 0 && whitey == 2) {
+				left(1);
+				up(1);
+				left(0);
+				whitex = 2;
+				whitey = 2;
+				whiteFace = UP;
+			}
+			else if (whitex == 2 & whitey == 2) {
+				right(0);
+				up(0);
+				right(1);
+				whitex = 0;
+				whitey = 2;
+				whiteFace = UP;
+			}
+			break;
+		case RIGHT:
+			if (whitex == 0 && whitey == 0) {
+				right(0);
+				up(0);
+				right(1);
+				count = false;
+			}
+			else if (whitex == 2 && whitey == 0) {
+				up(1);
+				whiteFace = BACK;
+			}
+			else if (whitex == 0 && whitey == 2) {
+				right(0);
+				up(0);
+				right(1);
+				whitex = 0;
+				whitey = 0;
+				whiteFace = FRONT;
+			}
+			else if (whitex == 2 && whitey == 2) {
+				right(1);
+				up(1);
+				right(0);
+				whitex = 2;
+				whitey = 0;
+				whiteFace = BACK;
+			}
+			break;
+		case LEFT:
+			if (whitex == 0 && whitey == 0) {
+				up2(0);
+				whiteFace = RIGHT;
+			}
+			else if (whitex == 2 && whitey == 0) {
+				right(0);
+				up(1);
+				right(1);
+				count = false;
+			}
+			else if (whitex == 0 && whitey == 2) {
+				left(0);
+				up(0);
+				left(1);
+				whitex = 0;
+				whitey = 0;
+				whiteFace = BACK;
+			}
+			else if (whitex == 2 && whitey == 2) {
+				left(1);
+				up(1);
+				left(0);
+				whitex = 2;
+				whitey = 0;
+				whiteFace = FRONT;
+			}
+			break;
+		case DOWN:
+			if (whitex == 0 && whitey == 0) {
+				left(1);
+				up(1);
+				left(0);
+				whitex = 0;
+				whitey = 0;
+				whiteFace = RIGHT;
+			}
+			else if (whitex == 0 && whitey == 2) {
+				left(0);
+				up(0);
+				left(1);
+				whitex = 2;
+				whitey = 0;
+				whiteFace = RIGHT;
+			}
+			else if (whitex == 2 && whitey == 2){
+				right(1);
+				up(0);
+				right(0);
+				whitex = 2;
+				whitey = 0;
+				whiteFace = RIGHT;
+			}
+			else {
+				count = false;
+			}
+			break;
+		case UP:
+			if (whitex == 0 && whitey == 0) {
+				up2(0);
+				whitex = 2;
+				whitey = 2;
+			}
+			else if (whitex == 0 && whitey == 2) {
+				up(1);
+				whitex = 2;
+				whitey = 2;
+			}
+			else if (whitex == 2 && whitey == 0) {
+				up(0);
+				whitex = 2;
+				whitey = 2;
+			}
+			else if (whitex == 2 && whitey == 2) {
+				right(0);
+				up2(0);
+				right(1);
+				whitex = 0;
+				whitey = 0;
+				whiteFace = FRONT;
+			}
+			break;
+		case BACK:
+			if (whitex == 0 && whitey == 0) {
+				up(0);
+				whiteFace = RIGHT;
+			}
+			else if (whitex == 0 && whitey == 2) {
+				right(1);
+				up(0);
+				right(0);
+				whitex = 0;
+				whitey = 0;
+			}
+			else if (whitex == 2 && whitey == 0) {
+				right(0);
+				up2(0);
+				right(1);
+				count = false;
+			}
+			else if (whitex == 2 && whitey == 2) {
+				left(0);
+				up(0);
+				left(1);
+				whitex = 2;
+				whitey = 0;
+				whiteFace = UP;
+			}
+			break;
+
+		}
+		
+	}
+	count = true;
+	cube->findAngle(WHITE, RED, BLUE, whitex, whitey, whiteFace);
+	/*
+
+	*/
+	/*
+	while (count) {
+		switch (whiteFace) {
+		case FRONT:
+			if (whitex == 0 && whitey == 0) {
+				front(0);
+				up(0);
+				front(1);
+				count = false;
+			}
+			else if (whitex == 2 && whitey == 0) {
+				up(1);
+				whiteFace = RIGHT;
+			}
+			else if (whitex == 0 && whitey == 2) {
+				front(0);
+				up(0);
+				front(1);
+				whitex = 0;
+				whitey = 0;
+				whiteFace = LEFT;
+			}
+			else if (whitex == 2 && whitey == 2) {
+				front(1);
+				up(1);
+				front(0);
+				whitex = 2;
+				whitey = 0;
+				whiteFace = RIGHT;
+			}
+			break;
+		case UP:
+			break;
+		case LEFT:
+			if (whitex == 0 && whitey == 0) {
+				up(1);
+				whiteFace = FRONT;
+			}
+			else if (whitex == 2 && whitey == 0) {
+				left(1);
+				up(1);
+				left(0);
+				count = false;
+			}
+			else if (whitex == 0 && whitey == 2) {
+				back(1);
+				up(1);
+				back(0);
+				whitex = 0;
+				whitey = 2;
+				whiteFace = UP;
+			}
+			else if (whitex == 2 & whitey == 2) {
+				front(0);
+				up(0);
+				front(1);
+				whitex = 0;
+				whitey = 0;
+				whiteFace = UP;
+			}
+			break;
+		case RIGHT:
+			if (whitex == 0 && whitey == 0) {
+				up(0);
+				whiteFace = BACK;
+			}
+			else if (whitex == 0 && whitey == 2) {
+				front(1);
+				up(0);
+				front(0);
+				whitex = 0;
+				whitey = 0;
+			}
+			else if (whitex == 2 && whitey == 0) {
+				front(0);
+				up2(0);
+				front(1);
+				count = false;
+			}
+			else if (whitex == 2 && whitey == 2) {
+				back(0);
+				up(0);
+				back(1);
+				whitex = 2;
+				whitey = 2;
+				whiteFace = UP;
+			}
+			break;
+		case DOWN:
+			break;
+		case BACK:
+			if (whitex == 0 && whitey == 0) {
+				up2(0);
+				whiteFace = FRONT;
+			}
+			else if (whitex == 2 && whitey == 0) {
+				front(0);
+				up(1);
+				front(1);
+				count = false;
+			}
+			else if (whitex == 0 && whitey == 2) {
+				back(0);
+				up(0);
+				back(1);
+				whitex = 0;
+				whitey = 0;
+				whiteFace = RIGHT;
+			}
+			else if (whitex == 2 && whitey == 2) {
+				back(1);
+				up(1);
+				back(0);
+				whitex = 2;
+				whitey = 0;
+				whiteFace = LEFT;
+			}
+			break;
+		}
+	}*/
+}
 void Steps::step3() {}
 void Steps::step4() {}
 void Steps::step5() {}
