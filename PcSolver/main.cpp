@@ -22,8 +22,7 @@ int main() {
 	s->step2();
 	cout << endl;
 	c->printCube();
-	system("PAUSE");
 	
-	/*s->verifyStep(1, 100, 1);
-	system ("PAUSE");*/
+	s->verifyStep(2, 1000000, 100, 0);
+	system ("PAUSE");
 }

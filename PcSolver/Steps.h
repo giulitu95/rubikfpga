@@ -53,6 +53,6 @@ public:
 	//Used for debugging.
 	//Get a step number. It mash up the cube and solves until that step for cycles times. 
 	//if verbose it's true, return on console some diagnostic informations if the solution isn't correct.
-	void verifyStep(int stepNo, int cycles, bool verbose);
+	void verifyStep(int stepNo, int cycles, int mashup, bool verbose);
 };
 #endif;

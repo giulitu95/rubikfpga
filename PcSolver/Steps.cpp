@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdlib.h>
 #include <time.h>
 #include <fstream>
 #include <list>
@@ -642,7 +643,7 @@ void Steps::step2() {
 				whitey = 2;
 				whiteFace = UP;
 			}
-			else if (whitex == 2 & whitey == 2) {
+			else if (whitex == 2 && whitey == 2) {
 				right(0);
 				up(0);
 				right(1);
@@ -929,23 +930,21 @@ void Steps::printSteps() {
 	}
 }
 
-void Steps::verifyStep(int stepNo, int cycles, bool verbose) {
+void Steps::verifyStep(int stepNo, int cycles, int mashup, bool verbose) {
 	cout << "Verify until step " << stepNo << " for " << cycles << " times." << endl << endl;
 	int errorCases=0, okCases=0;
 	bool error=0;
 	int **f, **b, **d, **l, **r;
+	d = cube->getFace(DOWN);
+	b = cube->getFace(BACK);
+	f = cube->getFace(FRONT);
+	l = cube->getFace(LEFT);
+	r = cube->getFace(RIGHT);
 	for (int i = 1; i <= cycles; i++) {
 		if (verbose) { cout << "Case " << i << " of " << cycles << ": "; }
-		cube->mashupCube(60);
-		switch (stepNo) {
-		case 1:
+		cube->mashupCube(mashup);
+		if (stepNo >= 1) {
 			step1();
-			d = cube->getFace(DOWN);
-			b = cube->getFace(BACK);
-			f = cube->getFace(FRONT);
-			l = cube->getFace(LEFT);
-			r = cube->getFace(RIGHT);
-
 			//Verify the white cross
 			for (int x = 0;x < 3;x++) {
 				for (int y = 0; y < 3;y++) {
@@ -972,7 +971,7 @@ void Steps::verifyStep(int stepNo, int cycles, bool verbose) {
 					if (verbose) { cout << "Green edge on right face not in position" << endl; }
 				}
 				if (b[2][1] != ORANGE) {
-					if (error == 0) { if (verbose){ cout << "error" << endl; }  }
+					if (error == 0) { if (verbose) { cout << "error" << endl; } }
 					error = 1;
 					cout << "Orange edge on back face not in position" << endl;
 				}
@@ -982,16 +981,74 @@ void Steps::verifyStep(int stepNo, int cycles, bool verbose) {
 					if (verbose) { cout << "Blue edge on left face not in position" << endl; }
 				}
 			}
+		}
+		if (stepNo >= 2) {
+			step2();
+			//Verify the angles of the down face
+			for (int x = 0;x < 3;x++) {
+				for (int y = 0; y < 3;y++) {
+					if (/*((x == 0) && ((y == 0) || (y == 2))) || */((x == 2) && ((y == 0) /*|| (y == 2)*/))) {
+						if (d[y][x] != WHITE) {
+							error = 1;
+						}
+					}
+				}
+			}
 			if (error) {
-				cout << endl;
-				if (verbose) { cube->printCube(); }
-				errorCases++;
+				if (verbose) { cout << "error" << endl << "White angles not in order" << endl; }
 			}
+			//Verify that all the near faces are set correctly
 			else {
-				if (verbose) { cout << "ok" << endl << endl; }
-				okCases++;
+				//front->red, right->green, left->blue, back->orange
+			/*	if (f[2][0] != RED) {
+					error = 1;
+					if (verbose) { cout << "error" << endl << "Left red angle on front face not in position" << endl; }
+				}*/
+				if (f[2][2] != RED) {
+					if (error == 0) { if (verbose) { cout << "error" << endl; } }
+					error = 1;
+					if (verbose) { cout << "Right red angle on front face not in position" << endl; }
+				}
+				if (r[2][0] != GREEN) {
+					if (error == 0) { if (verbose) { cout << "error" << endl; } }
+					error = 1;
+					if (verbose) { cout << "Left green angle on right face not in position" << endl; }
+				}
+			/*	if (r[2][2] != GREEN) {
+					if (error == 0) { if (verbose) { cout << "error" << endl; } }
+					error = 1;
+					if (verbose) { cout << "Right green angle on right face not in position" << endl; }
+				}
+				if (b[2][0] != ORANGE) {
+					if (error == 0) { if (verbose) { cout << "error" << endl; } }
+					error = 1;
+					cout << "Left orange angle on back face not in position" << endl;
+				}
+				if (b[2][2] != ORANGE) {
+					if (error == 0) { if (verbose) { cout << "error" << endl; } }
+					error = 1;
+					cout << "Right orange angle on back face not in position" << endl;
+				}
+				if (l[2][0] != BLUE) {
+					if (error == 0) { if (verbose) { cout << "error" << endl; } }
+					error = 1;
+					if (verbose) { cout << "Left blue angle on left face not in position" << endl; }
+				}
+				if (l[2][2] != BLUE) {
+					if (error == 0) { if (verbose) { cout << "error" << endl; } }
+					error = 1;
+					if (verbose) { cout << "Right blue angle on left face not in position" << endl; }
+				}*/
 			}
-			break;
+		}
+		if (error) {
+			cout << endl;
+			if (verbose) { cube->printCube(); }
+			errorCases++;
+		}
+		else {
+			if (verbose) { cout << "ok" << endl << endl; }
+			okCases++;
 		}
 		steps.clear();
 	}
